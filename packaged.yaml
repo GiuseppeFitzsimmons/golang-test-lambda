@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Globals:
+  Function:
+    Timeout: 18
+    Runtime: go1.x
+    Handler: index.handler
+Resources:
+  goFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://wwdd-build-bucket-us-east-1/9154d29d9cc4ad1be261535da4f39b71
+      Handler: golangtest
+      Runtime: go1.x
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /
+            Method: post
